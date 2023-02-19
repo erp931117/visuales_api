@@ -27,13 +27,13 @@ class SerieController extends Controller
      */
     public function show($id)
     {
-        $serieR = Serie::with(['seasons.chapters', 'images'])->find($id);
+        $serieR = Serie::with(['seasons.chapters', 'seasons.subtitles', 'images'])->find($id);
         return response()->json($serieR);
     }
 
     public function searchByName($term)
     {
-        $serieR = Serie::with(['seasons.chapters', 'images'])->where('title', 'LIKE', '%' . $term . '%')->get();
+        $serieR = Serie::with(['seasons.chapters', 'seasons.subtitles', 'images'])->where('title', 'LIKE', '%' . $term . '%')->get();
         return response()->json($serieR);
     }
 }

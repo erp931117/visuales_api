@@ -21,10 +21,4 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('/tokens/create', function (Request $request) {
-    $token = $request->user()->createToken($request->token_name);
- 
-    return ['token' => $token->plainTextToken];
-});
-
 require __DIR__.'/auth.php';

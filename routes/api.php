@@ -3,6 +3,7 @@
 use App\Http\Controllers\SerieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,12 @@ Route::get('series',[SerieController::class,"index"])->name('series');
 Route::get('series/{id}',[SerieController::class,"show"])->name('showSerie');
 
 Route::get('series/search/{name}',[SerieController::class,"searchByName"])->name('searchByName');
+
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
+
+Route::group( ['middleware' => ["auth:sanctum"]], function(){
+    //rutas
+    Route::get('user-profile', [UserController::class, 'userProfile']);
+    Route::get('logout', [UserController::class, 'logout']);
+});

@@ -16,7 +16,7 @@ class CreateSubtitlesTable extends Migration
         Schema::create('subtitles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('link');
+            $table->text('link');
             $table->foreignId('season_id')->constrained('seasons')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
